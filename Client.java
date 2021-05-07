@@ -23,13 +23,14 @@ public class Client
      {
        Menu();
        choice = in.nextInt();
+       clearScreen();
 
        if(choice==1)
        {
          SetOrderMenu(pw,isr,br,in,or,method);
        }
 
-       else if(choice!=1 || choice!=2)
+       else if(choice!=1 && choice!=2)
        {
          System.out.println("Invalid Choice");
        }
@@ -47,7 +48,6 @@ public class Client
      System.out.println("2.) Quit");
      System.out.println();
      System.out.print("Enter Choice.. ");
-
  }
 
 
@@ -65,14 +65,18 @@ public static void SetOrderMenu(PrintWriter pw, InputStreamReader isr, BufferedR
 
      choice = in.nextInt();
 
-     switch(choice)
-     {
-       case 1:
-       AddItemMenu(pw,isr,br,in,or,method);
 
-       case 4:
+       if(choice==1){
+       AddItemMenu(pw,isr,br,in,or,method);}
+
+       //case 2://Rapha diz u
+
+       if(choice==3){
+       method.checkOrder(or,in);}
+
+       if(choice==4)
        break;
-     }
+
    }
 }
 
@@ -83,30 +87,40 @@ public static void SetOrderMenu(PrintWriter pw, InputStreamReader isr, BufferedR
    //Add Price - izz done
    int choice = 0;
 
-   System.out.println("Food Choices:");
-   System.out.println();
-   System.out.println("1.) Chicken - 20Php");
-   System.out.println("2.) Beef - 25Php");
-   System.out.println("3.) Cancel");
-   System.out.println();
-   System.out.print("Enter Choice.. ");
-
-   switch(choice)
+   while(choice!=3)
    {
-     case 1:
-     method.AddChicken(or,in);
+     System.out.println();
+     System.out.println("Food Choices:");
+     System.out.println();
+     System.out.println("1.) Chicken - 20Php");
+     System.out.println("2.) Beef - 25Php");
+     System.out.println("3.) Cancel");
+     System.out.println();
+     System.out.print("Enter Choice.. ");
 
-     case 3:
-     break;
+     choice = in.nextInt();
+
+       if(choice==1)
+       method.AddChicken(or,in);
+
+       if(choice==2)
+       method.AddBeef(or,in);
+
+       if(choice==3)
+       break;
+
+       if(choice>3)
+       System.out.println("Invalid Choice");
    }
 
  }
 
 
- public static void DeleteItem()
+ public static void clearScreen()
  {
-
- }
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
 
 
 

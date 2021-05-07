@@ -12,7 +12,7 @@ public class OrderMethods
     or.setChickenAmount(or.getChickenAmount() + amount);
 
     toAdd = amount * 20;
-    or.setChickenTotalPrice(getChickenTotalPrice() + toAdd);
+    or.setChickenTotalPrice(or.getChickenTotalPrice() + toAdd);
     UpdatTotalPriceAdd(toAdd,or);
   }
 
@@ -22,9 +22,11 @@ public class OrderMethods
 
     System.out.println("Enter Amount");
     int amount = in.nextInt();
+
     or.setBeefAmount(or.getBeefAmount() + amount);
 
     toAdd = amount * 25;
+    or.setBeefTotalPrice(or.getBeefTotalPrice() + toAdd);
     UpdatTotalPriceAdd(toAdd,or);
   }
 
@@ -35,11 +37,34 @@ public class OrderMethods
 
   public int UpdatTotalPriceAdd(int toAdd, Order or)
   {
-    or.setTotalPrice(or.getTotalPrice() + toAdd)
+    int sum = 0;
+    or.setTotalPrice(or.getTotalPrice() + toAdd);
+    sum = or.getTotalPrice() + toAdd;
+
+    return sum;
   }
 
   public void UpdatTotalPriceDeduct()//Rapha
   {
 
   }
+
+  public void checkOrder(Order or, Scanner in)
+  {
+    System.out.println();
+
+    if(or.getChickenAmount()>0)
+    System.out.println("Chicken " + or.getChickenAmount() + " " + or.getChickenTotalPrice());
+
+    if(or.getBeefAmount()>0)
+    System.out.println("Beef " + or.getBeefAmount() + " " + or.getBeefTotalPrice());
+
+    System.out.println();
+    System.out.println("Total Price: " + or.getTotalPrice());
+    System.out.println();
+
+    System.out.print("Enter to Continue... ");
+    String temp = in.nextLine();
+  }
+
 }

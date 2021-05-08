@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class OrderMethods
 {
-    public void AddChicken(Order or,Scanner in)
+    public void AddChicken(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)
     {
         int toAdd = 0;
 
@@ -16,7 +17,7 @@ public class OrderMethods
         UpdatTotalPriceAdd(toAdd,or);
     }
 
-    public void AddBeef(Order or,Scanner in)
+    public void AddBeef(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)
     {
         int toAdd = 0;
 
@@ -30,28 +31,48 @@ public class OrderMethods
         UpdatTotalPriceAdd(toAdd,or);
     }
 
-    public void DeleteChicken(Order or,Scanner in)//Rapha
+    public void DeleteChicken(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)//Rapha
     {
         int toDel = 0;
 
         System.out.println("Enter Amount");
         int amount = in.nextInt();
+        int temp = or.getChickenAmount() - amount;
 
-        or.setChickenTotalPrice(or.getChickenTotalPrice() - toDel);
-        UpdatTotalPriceDeduct(toDel,or);
+        if(temp>0)
+        {
+          or.setChickenAmount(or.getChickenAmount() - amount);
 
+          or.setChickenTotalPrice(or.getChickenTotalPrice() - toDel);
+          UpdatTotalPriceDeduct(toDel,or);
+        }
+
+        else if(temp<0)
+        {
+          System.out.println("Amount is already empty!");
+        }
     }
 
-    public void DeleteBeef(Order or,Scanner in)//Rapha
+    public void DeleteBeef(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)//Rapha
     {
         int toDel = 0;
 
         System.out.println("Enter Amount");
         int amount = in.nextInt();
+        int temp = or.getBeefAmount() - amount;
 
-        or.setBeefTotalPrice(or.getBeefTotalPrice() - toDel);
-        UpdatTotalPriceDeduct(toDel,or);
+        if(temp>0)
+        {
+          or.setBeefAmount(or.getBeefAmount() - amount);
 
+          or.setBeefTotalPrice(or.getBeefTotalPrice() - toDel);
+          UpdatTotalPriceDeduct(toDel,or);
+        }
+
+        else if(temp<0)
+        {
+          System.out.println("Amount is already empty!");
+        }
 
     }
 
@@ -79,17 +100,14 @@ public class OrderMethods
         System.out.println();
 
         if(or.getChickenAmount()>0)
-            System.out.println("Chicken " + or.getChickenAmount() + " " + or.getChickenTotalPrice());
+            System.out.println("Chicken x" + or.getChickenAmount() + " " + or.getChickenTotalPrice());
 
         if(or.getBeefAmount()>0)
-            System.out.println("Beef " + or.getBeefAmount() + " " + or.getBeefTotalPrice());
+            System.out.println("Beef x" + or.getBeefAmount() + " " + or.getBeefTotalPrice());
 
         System.out.println();
         System.out.println("Total Price: " + or.getTotalPrice());
         System.out.println();
-
-        System.out.print("Enter to Continue... ");
-        String temp = in.nextLine();
     }
 
 }

@@ -1,6 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Client
 {
@@ -11,6 +12,13 @@ public class Client
         Scanner in = new Scanner(System.in);
         Order or = new Order();
         OrderMethods method = new OrderMethods();
+
+        Random rand = new Random();
+        int upperbound = 1000;
+        int maxTime = 60;
+
+        int id = rand.nextInt(upperbound);
+        int time = rand.nextInt(maxTime);
 
         boolean done = false;
         int choice = 0;
@@ -23,7 +31,6 @@ public class Client
         {
             Menu();
             choice = in.nextInt();
-            clearScreen();
 
             if(choice==1)
             {
@@ -35,6 +42,21 @@ public class Client
                 System.out.println("Invalid Choice");
             }
         }
+
+        System.out.println();
+        pw.println("Server: Order has been recorded!");
+        pw.flush();
+        String str = br.readLine();
+        System.out.println(str);
+
+        System.out.println();
+        System.out.println("Order Details");
+        System.out.println("-------------------------------");
+        System.out.println("Order ID: " + "202100" + id );
+        System.out.println("Estimated Time: " + time + " minutes");
+        System.out.println("-------------------------------");
+        method.checkOrder(or,in);
+        System.out.println("-------------------------------");
 
         pw.close();
         in.close();
@@ -99,17 +121,17 @@ public class Client
             System.out.println();
             System.out.println("1.) Chicken - 20Php");
             System.out.println("2.) Beef - 25Php");
-            System.out.println("3.) Cancel");
+            System.out.println("3.) Back");
             System.out.println();
             System.out.print("Enter Choice.. ");
 
             choice = in.nextInt();
 
             if(choice==1)
-                method.AddChicken(or,in);
+                method.AddChicken(pw,isr,br,or,in);
 
             if(choice==2)
-                method.AddBeef(or,in);
+                method.AddBeef(pw,isr,br,or,in);
 
             if(choice==3)
                 break;
@@ -131,19 +153,19 @@ public class Client
             System.out.println();
             System.out.println("Food Choices:");
             System.out.println();
-            System.out.println("1.) Chicken - 20Php");
-            System.out.println("2.) Beef - 25Php");
-            System.out.println("3.) Cancel");
+            System.out.println("1.) Chicken: " + or.getChickenAmount());
+            System.out.println("2.) Beef " + or.getBeefAmount());
+            System.out.println("3.) Back");
             System.out.println();
             System.out.print("Enter Choice.. ");
 
             choice = in.nextInt();
 
             if(choice == 1)
-                method.DeleteChicken(or, in);
+                method.DeleteChicken(pw,isr,br,or,in);
 
             if(choice == 2)
-                method.DeleteBeef(or, in);
+                method.DeleteBeef(pw,isr,br,or,in);
 
             if(choice == 3)
                 break;
@@ -152,14 +174,6 @@ public class Client
                 System.out.println("Invalid Choice");
         }
     }
-
-
-    public static void clearScreen()
-    {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
 
 
 }

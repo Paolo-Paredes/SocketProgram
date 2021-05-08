@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.Random;
 
 public class Server
 {
@@ -15,6 +16,8 @@ public class Server
         BufferedReader br = new BufferedReader(isr);
 
         String str  = br.readLine();
+        pw.println(str);
+        pw.flush();
 
     }
 }

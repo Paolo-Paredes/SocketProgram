@@ -12,6 +12,7 @@ public class Client
         Scanner in = new Scanner(System.in);
         Order or = new Order();
         OrderMethods method = new OrderMethods();
+        String str = "Client: ";
 
         Random rand = new Random();
         int upperbound = 1000;
@@ -42,12 +43,10 @@ public class Client
                 System.out.println("Invalid Choice");
             }
         }
+        pw.println("Client: Terminate System");
+        pw.flush();
 
         System.out.println();
-        pw.println("Server: Order has been recorded!");
-        pw.flush();
-        String str = br.readLine();
-        System.out.println(str);
 
         System.out.println();
         System.out.println("Order Details");
@@ -57,6 +56,7 @@ public class Client
         System.out.println("-------------------------------");
         method.checkOrder(or,in);
         System.out.println("-------------------------------");
+        System.out.println();
 
         pw.close();
         in.close();

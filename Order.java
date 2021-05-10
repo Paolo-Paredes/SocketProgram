@@ -5,6 +5,7 @@ public class Order
     int c_price = 0;
     int b_price = 0;
     int total_price = 0;
+    int notif = 0;
 
     public int getChickenAmount()
     {
@@ -31,6 +32,11 @@ public class Order
         return total_price;
     }
 
+    public int getNotif()
+    {
+        return notif;
+    }
+
     public void setChickenAmount(int c_amount)
     {
         this.c_amount = c_amount;
@@ -54,6 +60,11 @@ public class Order
     public void setTotalPrice(int total_price)
     {
         this.total_price = total_price;
+    }
+
+    public void setNotif(int notif)
+    {
+        this.notif = notif;
     }
 
 }

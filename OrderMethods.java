@@ -15,6 +15,8 @@ public class OrderMethods
         toAdd = amount * 20;
         or.setChickenTotalPrice(or.getChickenTotalPrice() + toAdd);
         UpdatTotalPriceAdd(toAdd,or);
+        pw.println(or.getChickenAmount() + "x Chicken has been added!");
+        pw.flush();
     }
 
     public void AddBeef(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)
@@ -29,6 +31,8 @@ public class OrderMethods
         toAdd = amount * 25;
         or.setBeefTotalPrice(or.getBeefTotalPrice() + toAdd);
         UpdatTotalPriceAdd(toAdd,or);
+        pw.println(or.getBeefAmount() + "x Beef has been added!");
+        pw.flush();
     }
 
     public void DeleteChicken(PrintWriter pw, InputStreamReader isr, BufferedReader br,Order or,Scanner in)//Rapha
@@ -45,6 +49,8 @@ public class OrderMethods
 
           or.setChickenTotalPrice(or.getChickenTotalPrice() - toDel);
           UpdatTotalPriceDeduct(toDel,or);
+          pw.println(toDel + "x Beef has been Deleted!");
+          pw.flush();
         }
 
         else if(temp<0)
@@ -67,6 +73,8 @@ public class OrderMethods
 
           or.setBeefTotalPrice(or.getBeefTotalPrice() - toDel);
           UpdatTotalPriceDeduct(toDel,or);
+          pw.println(amount + "x Beef has been Deleted!");
+          pw.flush();
         }
 
         else if(temp<0)

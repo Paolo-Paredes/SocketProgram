@@ -49,7 +49,7 @@ public class OrderMethods
 
           or.setChickenTotalPrice(or.getChickenTotalPrice() - toDel);
           UpdatTotalPriceDeduct(toDel,or);
-          pw.println(toDel + "x Beef has been Deleted!");
+          pw.println(amount + "x Chicken has been Deleted!");
           pw.flush();
         }
 

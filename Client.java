@@ -35,7 +35,7 @@ public class Client
 
             if(choice==1)
             {
-                SetOrderMenu(pw,isr,br,in,or,method);
+                SetOrderMenu(pw,isr,br,in,or,method,id,time);
             }
 
             else if(choice!=1 && choice!=2)
@@ -46,17 +46,7 @@ public class Client
         pw.println("Client: Terminate System");
         pw.flush();
 
-        System.out.println();
 
-        System.out.println();
-        System.out.println("Order Details");
-        System.out.println("-------------------------------");
-        System.out.println("Order ID: " + "202100" + id );
-        System.out.println("Estimated Time: " + time + " minutes");
-        System.out.println("-------------------------------");
-        method.checkOrder(or,in);
-        System.out.println("-------------------------------");
-        System.out.println();
 
         pw.close();
         in.close();
@@ -73,7 +63,7 @@ public class Client
     }
 
 
-    public static void SetOrderMenu(PrintWriter pw, InputStreamReader isr, BufferedReader br, Scanner in, Order or, OrderMethods method)
+    public static void SetOrderMenu(PrintWriter pw, InputStreamReader isr, BufferedReader br, Scanner in, Order or, OrderMethods method, int id, int time)
     {
         int choice = 0;
 
@@ -105,6 +95,18 @@ public class Client
                 break;
 
         }
+
+        if(or.getChickenAmount() > 0 && or.getBeefAmount() > 0)
+        System.out.println();
+        System.out.println();
+        System.out.println("Order Details");
+        System.out.println("-------------------------------");
+        System.out.println("Order ID: " + "202100" + id );
+        System.out.println("Estimated Time: " + time + " minutes");
+        System.out.println("-------------------------------");
+        method.checkOrder(or,in);
+        System.out.println("-------------------------------");
+        System.out.println();
     }
 
 

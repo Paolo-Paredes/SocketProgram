@@ -46,7 +46,7 @@ public class Client
         pw.println("Client: Terminate System");
         pw.flush();
 
-
+        System.out.println("Client: Disconnected");
 
         pw.close();
         in.close();
